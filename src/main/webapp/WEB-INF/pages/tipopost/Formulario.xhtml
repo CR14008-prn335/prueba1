@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:ez="http://xmlns.jcp.org/jsf/composite/ezcomp">
+
+    <h:form id="formulario" >
+        <p:panel id="manejoDatos" rendered="#{tipoPostBean.mostrar}">
+            <div align="center">
+                <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+            </div>
+            <p:panelGrid columns="2">
+                <p:outputLabel value="#{componente['prop.name']}: " for="nombre" />
+                <p:inputText id="nombre" value="#{tipoPostBean.tipoPostEntity.nombre}" title="Nombre" required="true" requiredMessage="#{componente['error.guardar']}"/>
+                <p:outputLabel value="#{componente['prop.active']}:" for="activo" />
+                <p:selectBooleanCheckbox id="activo" value="#{tipoPostBean.tipoPostEntity.activo}" />
+                <p:outputLabel value="#{componente['prop.descripcion']}:" for="descripcion" />
+                <p:inputText id="descripcion" value="#{tipoPostBean.tipoPostEntity.descripcion}" title="Descripcion" required="true" requiredMessage="#{componente['error.descripcion']}"/>
+                </p:panelGrid>
+            <div>
+                <ez:BotonCRUD listener="#{tipoPostBean}" renderBtns="#{tipoPostBean.crudBtns}" updates="@form :tabla" />
+            </div>
+        </p:panel>
+    </h:form>
+
+</ui:composition>
+
+
